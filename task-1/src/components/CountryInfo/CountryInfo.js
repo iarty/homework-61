@@ -27,14 +27,13 @@ export default class CountryInfo extends Component {
 	};
 
 	render() {
-		const cls = [classes.hide];
+		let cls = [classes.hide];
 		if (!this.state.loading && this.state.show) {
-			cls.splice(0, 1, classes.show);
+			cls = [classes.show];
 		}
 		const country = this.state.countryInfo;
 		return (
 			<section className={classes.CountryInfo}>
-				{this.state.loading && <Preloader />}
 				<div className={cls}>
 					<img style={{ float: "right" }} src={country.flag} alt='flag' width='250px' />
 					<h2>{country.name}</h2>
@@ -60,6 +59,7 @@ export default class CountryInfo extends Component {
 						<Borders borders={this.state.countryInfo.borders} loading={this.loadHandler} />
 					</div>
 				</div>
+				{this.state.loading && <Preloader />}
 			</section>
 		);
 	}
